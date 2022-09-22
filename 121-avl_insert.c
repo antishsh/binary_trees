@@ -14,7 +14,8 @@ avl_t *avl_insert(avl_t **tree, int value);
  */
 int balance(const binary_tree_t *tree)
 {
-	return (tree != NULL ? custom_binary_tree_height(tree->left) - custom_binary_tree_height(tree->right) : 0);
+	return (tree != NULL ? custom_binary_tree_height(tree->left) - 
+	custom_binary_tree_height(tree->right) : 0);
 }
 
 /**
