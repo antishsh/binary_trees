@@ -1,7 +1,5 @@
 #include "binary_trees.h"
 
-
-
 /**
  * binary_tree_is_perfect - check if a binary tree is perfect
  * @tree: pointer to root node of tree to check
@@ -9,7 +7,6 @@
  */
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
-
 {
 	int left, right, size, pow;
 
@@ -29,13 +26,10 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 		if (pow - 1 == size)
 			return (1);
-
 	}
 
 	return (0);
 }
-
-
 
 /**
  * custom_binary_tree_height - Measure height of a binary tree from given node
@@ -44,12 +38,12 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
  */
 
 int custom_binary_tree_height(const binary_tree_t *tree)
-
 {
 	int left, right;
 
 	if (tree == NULL)
 		return (-1);
+
 	if (tree->left == NULL && tree->right == NULL)
 		return (0);
 
@@ -60,10 +54,7 @@ int custom_binary_tree_height(const binary_tree_t *tree)
 		return (left);
 	else
 		return (right);
-
 }
-
-
 
 /**
  * binary_tree_size - measure the size of a binary tree from a given node
@@ -72,7 +63,6 @@ int custom_binary_tree_height(const binary_tree_t *tree)
  */
 
 size_t binary_tree_size(const binary_tree_t *tree)
-
 {
 	size_t count;
 
@@ -83,10 +73,7 @@ size_t binary_tree_size(const binary_tree_t *tree)
 	count += binary_tree_size(tree->right);
 
 	return (count);
-
 }
-
-
 
 /**
  * get_power - get the power of 2 for a given number
@@ -95,7 +82,6 @@ size_t binary_tree_size(const binary_tree_t *tree)
  */
 
 int get_power(int exp)
-
 {
 	int pow, i;
 
