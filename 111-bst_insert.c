@@ -38,7 +38,6 @@ bst_t *bst_insert(bst_t **tree, int value)
 
 	if (second == NULL)
 		second = new;
-
 	else if (value < second->n)
 	{
 		second->left = new;
