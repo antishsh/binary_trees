@@ -7,6 +7,30 @@ avl_t *avl_insert_recursive(avl_t **tree, avl_t *parent,
 avl_t *avl_insert(avl_t **tree, int value);
 
 /**
+ * height - Measures the height of a binary tree.
+ * @tree: A pointer to the root node of the tree to measure the height.
+ *
+ * Return: If tree is NULL, your function must return 0, else return height.
+ */
+int custom_binary_tree_height(const binary_tree_t *tree)
+{
+	int left, right;
+
+	if (tree == NULL)
+		return (-1);
+
+	if (tree->left == NULL && tree->right == NULL)
+		return (0);
+
+	left = custom_binary_tree_height(tree->left) + 1;
+	right = custom_binary_tree_height(tree->right) + 1;
+	if (left > right)
+		return (left);
+	else
+		return (right);
+}
+
+/**
  * balance - Measures the balance factor of a binary tree.
  * @tree: A pointer to the root node of the tree to measure the balance factor.
  *
@@ -14,8 +38,7 @@ avl_t *avl_insert(avl_t **tree, int value);
  */
 int balance(const binary_tree_t *tree)
 {
-	return (tree != NULL ? custom_binary_tree_height(tree->left) - 
-	custom_binary_tree_height(tree->right) : 0);
+	return (tree != NULL ? custom_binary_tree_height(tree->left) - height(tree->right) : 0);
 }
 
 /**
