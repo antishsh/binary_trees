@@ -1,7 +1,5 @@
 #include "binary_trees.h"
 
-
-
 /**
  * binary_tree_rotate_right - performs a right-rotation on a binary tree
  * @tree: a pointer to the root node of the tree to check
@@ -10,49 +8,43 @@
  */
 
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree)
-
 {
+	binary_tree_t *tmp = NULL, *parent;
 
-		binary_tree_t *tmp = NULL, *parent;
+	if (!tree || !tree->left)
 
+		return (NULL);
 
+	tmp = tree;
 
-			if (!tree || !tree->left)
+	parent = tree->parent;
 
-						return (NULL);
+	tree = tree->left;
 
-				tmp = tree;
+	tree->parent = NULL;
 
-					parent = tree->parent;
+	if (tree->right)
 
-						tree = tree->left;
+	{
 
-							tree->parent = NULL;
+		tmp->left = tree->right;
 
-								if (tree->right)
+		tree->right->parent = tmp;
+	}
 
-										{
+	else
 
-													tmp->left = tree->right;
+		tmp->left = NULL;
 
-															tree->right->parent = tmp;
+	tmp->parent = tree;
 
-																}
+	tree->right = tmp;
 
-									else
+	if (parent)
 
-												tmp->left = NULL;
+		parent->left = tree;
 
-										tmp->parent = tree;
+	tree->parent = parent;
 
-											tree->right = tmp;
-
-												if (parent)
-
-															parent->left = tree;
-
-													tree->parent = parent;
-
-														return (tree);
-
+	return (tree);
 }

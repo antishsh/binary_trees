@@ -1,7 +1,5 @@
 #include "binary_trees.h"
 
-
-
 /**
  * binary_trees_ancestor - finds the lowest common ancestor of two nodes*
  * @first: a pointer to the first node to find the ancestor
@@ -10,67 +8,52 @@
  * NULL if there is no ancestor node
  */
 
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
-
-						     const binary_tree_t *second)
-
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
 {
 
-		size_t depth_first, depth_second;
+	size_t depth_first, depth_second;
 
+	if (!first || !second)
 
+		return (NULL);
 
-			if (!first || !second)
+	depth_first = binary_tree_depth(first);
 
-						return (NULL);
+	depth_second = binary_tree_depth(second);
 
+	while (depth_first > depth_second)
 
+	{
 
-				depth_first = binary_tree_depth(first);
+		first = first->parent;
 
-					depth_second = binary_tree_depth(second);
+		depth_first--;
+	}
 
+	while (depth_second > depth_first)
 
+	{
 
-						while (depth_first > depth_second)
+		second = second->parent;
 
-								{
+		depth_second--;
+	}
 
-											first = first->parent;
+	while (first && second)
 
-													depth_first--;
+	{
 
-														}
+		if (first == second)
 
-							while (depth_second > depth_first)
+			return ((binary_tree_t *)first);
 
-									{
+		first = first->parent;
 
-												second = second->parent;
+		second = second->parent;
+	}
 
-														depth_second--;
-
-															}
-
-								while (first && second)
-
-										{
-
-													if (first == second)
-
-																	return ((binary_tree_t *)first);
-
-															first = first->parent;
-
-																	second = second->parent;
-
-																		}
-
-									return ((binary_tree_t *)first);
-
+	return ((binary_tree_t *)first);
 }
-
-
 
 /**
  * binary_tree_depth - measures the depth of a node in a binary tree
@@ -80,31 +63,21 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
  */
 
 size_t binary_tree_depth(const binary_tree_t *tree)
-
 {
+	size_t depth = 0;
 
-		size_t depth = 0;
+	if (!tree)
 
+		return (0);
 
+	while (tree->parent)
 
-			if (!tree)
+	{
 
-						return (0);
+		depth++;
 
+		tree = tree->parent;
+	}
 
-
-				while (tree->parent)
-
-						{
-
-									depth++;
-
-											tree = tree->parent;
-
-												}
-
-
-
-					return (depth);
-
+	return (depth);
 }
